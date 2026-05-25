@@ -127,7 +127,33 @@
     }
 
     /* HERO */
+    #hero-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: var(--hero-img, none);
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      filter: grayscale(30%);
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    #hero-bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(13,13,15,0.3) 0%, rgba(13,13,15,0.6) 60%, #0d0d0f 100%);
+      z-index: 1;
+    }
+
     #hero {
+      position: relative;
+      z-index: 2;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -141,6 +167,28 @@
     .hero-inner {
       width: 100%;
     }
+
+    .hero-upload-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-upload-hint:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    #hero-file-input { display: none; }
 
     .hero-tag {
       display: inline-flex;
@@ -573,29 +621,38 @@
       <li><a href="#about">Tentang</a></li>
       <li><a href="#skills">Keahlian</a></li>
       <li><a href="#projects">Proyek</a></li>
-      <li><a href="#contact">Kontak</a></li>
+
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
-      <div class="hero-tag fade-up delay-1">Tersedia untuk kolaborasi</div>
-      <h1 class="hero-name fade-up delay-2">
-        Halo, saya<br /><em>Nama Anda</em>
-      </h1>
-      <p class="hero-desc fade-up delay-3">
-        Freelancer kreatif yang berfokus pada solusi digital. Saya merancang dan membangun pengalaman yang bersih, fungsional, dan bermakna.
-      </p>
-      <p class="hero-meta fade-up delay-4">
-        <strong>Mahasiswa</strong> Institut Teknologi dan Bisnis PGRI Dewantara Jombang &mdash; Sistem dan Teknologi Informasi &middot; 2025
-      </p>
-      <div class="hero-actions fade-up delay-5">
-        <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
-        <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+  <div id="hero-wrapper">
+    <div id="hero-bg"></div>
+    <div id="hero-bg-gradient"></div>
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-tag fade-up delay-1">Tersedia untuk kolaborasi</div>
+        <h1 class="hero-name fade-up delay-2">
+          Halo, saya<br /><em>Adam Ramadhani Pramudya</em>
+        </h1>
+        <p class="hero-desc fade-up delay-3">
+          Freelancer kreatif yang berfokus pada solusi digital. Saya merancang dan membangun pengalaman yang bersih, fungsional, dan bermakna.
+        </p>
+        <p class="hero-meta fade-up delay-4">
+          <strong>Mahasiswa</strong> Institut Teknologi dan Bisnis PGRI Dewantara Jombang &mdash; Sistem dan Teknologi Informasi &middot; 2025
+        </p>
+        <div class="hero-actions fade-up delay-5">
+          <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
+          <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+        </div>
+        <input type="file" id="hero-file-input" accept="image/*" />
+        <label for="hero-file-input" class="hero-upload-hint" id="upload-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Klik untuk pasang foto background
+        </label>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <div class="divider"></div>
 
@@ -617,12 +674,12 @@
       </div>
       <div class="about-stats">
         <div class="stat-card">
-          <div class="stat-number">10+</div>
+          <div class="stat-number">2</div>
           <div class="stat-label">Proyek selesai</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">5+</div>
-          <div class="stat-label">Klien puas</div>
+          <div class="stat-number">6</div>
+          <div class="stat-label">Tools dikuasai</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">2025</div>
@@ -644,31 +701,24 @@
     <h2>Apa yang saya kuasai</h2>
     <div class="skills-grid">
       <div class="skill-category">
-        <div class="skill-cat-title">Pengembangan Web</div>
+        <div class="skill-cat-title">Pengembangan Web &amp; Data</div>
         <div class="skill-tags">
           <span class="skill-tag">HTML</span>
-          <span class="skill-tag">CSS</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">PHP</span>
           <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Google Colab</span>
         </div>
       </div>
       <div class="skill-category">
         <div class="skill-cat-title">Desain &amp; Kreatif</div>
         <div class="skill-tags">
-          <span class="skill-tag">Figma</span>
           <span class="skill-tag">Canva</span>
-          <span class="skill-tag">Adobe Photoshop</span>
-          <span class="skill-tag">UI Design</span>
         </div>
       </div>
       <div class="skill-category">
-        <div class="skill-cat-title">Tools &amp; Lainnya</div>
+        <div class="skill-cat-title">Tools &amp; Produktivitas</div>
         <div class="skill-tags">
-          <span class="skill-tag">Git &amp; GitHub</span>
           <span class="skill-tag">VS Code</span>
-          <span class="skill-tag">Microsoft Office</span>
-          <span class="skill-tag">Google Workspace</span>
+          <span class="skill-tag">Microsoft Access</span>
         </div>
       </div>
     </div>
@@ -683,16 +733,16 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <span class="project-tag">Web App</span>
-        <h3 class="project-title">Nama Proyek Pertama</h3>
+        <span class="project-tag">Database</span>
+        <h3 class="project-title">Penerapan ERD Sistem Rumah Sakit</h3>
         <p class="project-desc">
-          Deskripsi singkat proyek ini. Jelaskan apa yang dibangun, masalah yang diselesaikan, dan dampaknya bagi pengguna.
+          Merancang dan mengimplementasikan Entity Relationship Diagram (ERD) untuk sistem manajemen rumah sakit, kemudian menerapkannya ke dalam Microsoft Access sebagai basis data fungsional.
         </p>
         <div class="project-footer">
           <div class="project-tech">
-            <span class="tech-pill">HTML</span>
-            <span class="tech-pill">CSS</span>
-            <span class="tech-pill">JS</span>
+            <span class="tech-pill">ERD</span>
+            <span class="tech-pill">Microsoft Access</span>
+            <span class="tech-pill">Database Design</span>
           </div>
           <a href="#" class="project-link">
             Lihat
@@ -702,33 +752,15 @@
       </div>
 
       <div class="project-card">
-        <span class="project-tag">Desain</span>
-        <h3 class="project-title">Nama Proyek Kedua</h3>
+        <span class="project-tag">Pemrograman</span>
+        <h3 class="project-title">Implementasi Single Linked List</h3>
         <p class="project-desc">
-          Deskripsi singkat proyek ini. Jelaskan apa yang dibangun, masalah yang diselesaikan, dan dampaknya bagi pengguna.
+          Membangun dan mengimplementasikan struktur data Single Linked List dari awal, mencakup operasi insert, delete, dan traversal sebagai bagian dari studi struktur data.
         </p>
         <div class="project-footer">
           <div class="project-tech">
-            <span class="tech-pill">Figma</span>
-            <span class="tech-pill">UI/UX</span>
-          </div>
-          <a href="#" class="project-link">
-            Lihat
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-tag">Freelance</span>
-        <h3 class="project-title">Nama Proyek Ketiga</h3>
-        <p class="project-desc">
-          Deskripsi singkat proyek ini. Jelaskan apa yang dibangun, masalah yang diselesaikan, dan dampaknya bagi pengguna.
-        </p>
-        <div class="project-footer">
-          <div class="project-tech">
-            <span class="tech-pill">PHP</span>
-            <span class="tech-pill">MySQL</span>
+            <span class="tech-pill">Struktur Data</span>
+            <span class="tech-pill">Algoritma</span>
           </div>
           <a href="#" class="project-link">
             Lihat
@@ -746,41 +778,50 @@
   <section id="contact">
     <p class="section-label">Kontak</p>
     <div class="contact-inner">
-      <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Mari berkolaborasi</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">
-        Punya proyek atau ide menarik? Saya terbuka untuk diskusi dan kolaborasi.
+      <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Temukan saya di sini</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">
+        Jangan ragu untuk terhubung melalui media sosial saya.
       </p>
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Nama</label>
-            <input type="text" id="name" placeholder="Nama lengkap Anda" required />
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+
+        <a href="https://www.instagram.com/adaammr/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.25rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,0.03)'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="#c9a96e" stroke="none"/></svg>
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text); font-weight: 400;">Instagram</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">@adaammr</div>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="email@contoh.com" required />
+          <svg style="margin-left: auto; opacity: 0.4;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/adam-ramadhani-pramudya-495137402?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.25rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,0.03)'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.5" stroke-width="2.5" stroke-linecap="round"/><path d="M12 11v5M12 14c0-1.7 1-3 2.5-3S17 13 17 14.5V16"/></svg>
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text); font-weight: 400;">LinkedIn</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">Adam Ramadhani Pramudya</div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="subject">Subjek</label>
-          <input type="text" id="subject" placeholder="Tentang apa?" />
-        </div>
-        <div class="form-group">
-          <label for="message">Pesan</label>
-          <textarea id="message" rows="5" placeholder="Ceritakan proyek atau ide Anda..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Kirim Pesan</button>
-      </form>
+          <svg style="margin-left: auto; opacity: 0.4;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+
+        <a href="https://www.facebook.com/share/18qE2a3pDz/?mibextid=wwXIfr" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.25rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,0.03)'">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M15 8h-1.5A1.5 1.5 0 0 0 12 9.5V11h3l-.5 3H12v7"/></svg>
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text); font-weight: 400;">Facebook</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">Adam Ramadhani Pramudya</div>
+          </div>
+          <svg style="margin-left: auto; opacity: 0.4;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-copy">2025 Nama Anda. Dibuat dengan sepenuh hati.</p>
+    <p class="footer-copy">2025 Adam. Dibuat dengan sepenuh hati.</p>
     <div class="footer-links">
-      <a href="https://github.com/username-anda" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/username-anda" target="_blank">LinkedIn</a>
-      <a href="mailto:email@anda.com">Email</a>
+      <a href="https://www.instagram.com/adaammr/" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/adam-ramadhani-pramudya-495137402" target="_blank">LinkedIn</a>
+      <a href="https://www.facebook.com/share/18qE2a3pDz/?mibextid=wwXIfr" target="_blank">Facebook</a>
     </div>
   </footer>
 
@@ -834,6 +875,23 @@
         e.target.reset();
       }, 3000);
     }
+
+    // Hero background image upload
+    const fileInput = document.getElementById('hero-file-input');
+    const heroBg = document.getElementById('hero-bg');
+    const uploadLabel = document.getElementById('upload-label');
+
+    fileInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        heroBg.style.setProperty('background-image', 'url(' + e.target.result + ')');
+        heroBg.style.opacity = '0.22';
+        uploadLabel.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Ganti foto background';
+      };
+      reader.readAsDataURL(file);
+    });
   </script>
 
 </body>
